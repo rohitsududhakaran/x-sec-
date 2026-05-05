@@ -125,7 +125,7 @@ echo "Failed password for root from 1.2.3.4 port 22 ssh2" >> /var/log/auth.log
 ## 👨‍💻 Author
 
 **Rohit Sudhakaran**
-Security Enthusiast | Penetration Tester
+Linux admin | Penetration Tester
 
 ---
 
