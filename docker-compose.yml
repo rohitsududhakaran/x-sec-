@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+  ai-monitor:
+    build: .
+    container_name: ai-monitor
+    depends_on:
+      - ollama
+    volumes:
+      - ./logs:/app/logs
+      - /var/log:/var/log:ro
+    environment:
+      - TELEGRAM_TOKEN=
+      - TELEGRAM_CHAT_ID=
+    restart: unless-stopped
+
+    # 🔥 REQUIRED for iptables + systemctl
+    privileged: true
+    pid: "host"
+    network_mode: "host"
+
+volumes:
+  ollama_data:
